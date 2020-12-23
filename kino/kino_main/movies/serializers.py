@@ -1,16 +1,26 @@
+from django.db.models import fields
 from rest_framework import serializers
 
 from .models import *
 
 class MovieAllSerializer(serializers.ModelSerializer):
+
     category = serializers.SlugRelatedField(slug_field="name", read_only=True)
-    user_rating = serializers.FloatField()
+    that_user_rating = serializers.FloatField()
     middle_rating = serializers.FloatField()
     class Meta:
          model = Movie
-         fields = ('title','tagline','category','url','middle_rating','user_rating')
+         fields = ('title','tagline','category','url','middle_rating','that_user_rating')
 
+class AllActorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Actor
+        fields= ("id","name","image")
 
+class ActorDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Actor
+        fields= '__all__'
 
 class RecursiveSerializer(serializers.Serializer):
 
@@ -45,8 +55,8 @@ class ShowReviewSerializer(serializers.ModelSerializer):
 class MovieOneDetailSerializer(serializers.ModelSerializer):
 
     category = serializers.SlugRelatedField(slug_field="name", read_only=True)
-    directors = serializers.SlugRelatedField(slug_field="name", read_only=True, many= True)
-    actors = serializers.SlugRelatedField(slug_field="name", read_only=True, many= True)
+    directors = AllActorSerializer(read_only=True, many= True)
+    actors = AllActorSerializer(read_only=True, many= True)
     genres = serializers.SlugRelatedField(slug_field="name", read_only=True, many= True)
     reviews = ShowReviewSerializer(many = True)
     class Meta:
@@ -61,7 +71,7 @@ class CreateRatingSerializer(serializers.ModelSerializer):
 
     def create(self,validated_data):
         
-        rating = Rating.objects.update_or_create(
+        rating,_ = Rating.objects.update_or_create(
 
         user= validated_data.get('user',None),
         movie= validated_data.get('movie',None),

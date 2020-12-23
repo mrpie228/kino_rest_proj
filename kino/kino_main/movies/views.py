@@ -1,38 +1,55 @@
 from django.db import models
 from django.db.models.base import Model
+from django.views import generic
+from rest_framework import generics
 from rest_framework import serializers
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from django.http import Http404
+from django.db.models import Avg
+from .serializers import (MovieAllSerializer, 
+                        MovieOneDetailSerializer,
+                        CreateRatingSerializer,
+                        CreateReviewSerializer,
+                        AllActorSerializer,
+                        ActorDetailSerializer)
+from .models import Actor, Movie
 
-from .serializers import MovieAllSerializer, MovieOneDetailSerializer,CreateRatingSerializer,CreateReviewSerializer
-from .models import Movie
 
 
+class  MovieAllView(generics.ListAPIView):
 
-class  MovieAllView(APIView):
+    serializer_class= MovieAllSerializer
 
-    def get(self, request):
+    def get_queryset(self):
         
-        if request.user.is_authenticated:
-            now_user=request.user
+        if self.request.user.is_authenticated:
+            now_user=self.request.user
         else:
             now_user=None
 
         movies =Movie.objects.filter(draft=False
-        ).annotate(user_rating= models.Sum('movie__star',filter=models.Q(movie__user=now_user))
-        ).annotate(middle_rating= models.Sum(models.F('movie__star')) / models.Count('movie'))
+        ).annotate(that_user_rating= models.Sum('movie__star',filter=models.Q(movie__user=now_user))
+        ).annotate(middle_rating=(Avg("movie__star")))
                 
                 
         serializer = MovieAllSerializer(movies, many = True)
-        return Response(serializer.data)
+        return movies
 
 
+class AllActorView(generics.ListAPIView):
+
+    queryset = Actor.objects.all()
+    serializer_class=AllActorSerializer
+
+class ActorDetailView(generics.RetrieveAPIView):
+
+    queryset = Actor.objects.all()
+    serializer_class=ActorDetailSerializer
 
 
-
-class  MovieOneDetailView(APIView):
+class  MovieOneDetailView(generics.RetrieveAPIView):
     def get(self, request,name):
+        
         try:
             movie =Movie.objects.get(url = name, draft=False)
             serializer = MovieOneDetailSerializer(movie)
@@ -43,16 +60,12 @@ class  MovieOneDetailView(APIView):
 
 
 
-class CreateReviewView(APIView):
+class CreateReviewView(generics.CreateAPIView):
     """docstring forCreateReviewView."""
 
-    def post(self, request):
-        review = CreateReviewSerializer(data= request.data)
-        if review.is_valid():
-            review.save()
-        return Response(status=201)
+    serializer_class= CreateReviewSerializer
 
-class CreateRatingView(APIView):
+class CreateRatingView(generics.CreateAPIView):
     
     def get_user(self, request):
         user= request.user
@@ -60,13 +73,6 @@ class CreateRatingView(APIView):
             return "noname in CreateRaringView"
         return user
 
-    def post(self, request):
-
-        serializer = CreateRatingSerializer(data=request.data)
-
-        if serializer.is_valid():
-            serializer.save(user=self.get_user(request))
-            return Response(status=201)
-        else:
-            return Response(status=400)
-            #{"star":4,"movie":2}
+    serializer_class = CreateRatingSerializer
+    def perform_create(self, serializer):
+        serializer.save(user=self.get_user(self.request))
