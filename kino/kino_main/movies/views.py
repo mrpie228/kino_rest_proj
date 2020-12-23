@@ -15,11 +15,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .utils import MovieFilter,CharFilterInFilter
 
 class  MovieAllView(generics.ListAPIView):
-
+    """Все фильмы"""
     serializer_class= MovieAllSerializer
+
+    # фильтры
     filter_backends =(DjangoFilterBackend,)
     filter_class= MovieFilter
     
+
+    #доп инфа по фильму
     def get_queryset(self):
         
         if self.request.user.is_authenticated:
@@ -37,7 +41,7 @@ class  MovieAllView(generics.ListAPIView):
 
 
 class AllActorView(generics.ListAPIView):
-
+    """Полное описание одного актёра"""
     queryset = Actor.objects.all()
     serializer_class=AllActorSerializer
 
@@ -48,6 +52,7 @@ class ActorDetailView(generics.RetrieveAPIView):
 
 
 class  MovieOneDetailView(generics.RetrieveAPIView):
+    """Полное описание одного фильма"""
     def get(self, request,name):
         
         try:
@@ -61,12 +66,12 @@ class  MovieOneDetailView(generics.RetrieveAPIView):
 
 
 class CreateReviewView(generics.CreateAPIView):
-    """docstring forCreateReviewView."""
+    """Выводит отзывы"""
 
     serializer_class= CreateReviewSerializer
 
 class CreateRatingView(generics.CreateAPIView):
-    
+    """Для выставления рейтинга"""
     def get_user(self, request):
         user= request.user
         if user =="AnonymousUser":

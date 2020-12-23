@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.conf import settings
 
 class Category(models.Model):
-
+    """Модель категорий"""
     name = models.CharField("Категория", max_length=150)
     description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
