@@ -41,12 +41,12 @@ class  MovieAllView(generics.ListAPIView):
 
 
 class AllActorView(generics.ListAPIView):
-    """Полное описание одного актёра"""
+    """Вывод всех актёров"""
     queryset = Actor.objects.all()
     serializer_class=AllActorSerializer
 
 class ActorDetailView(generics.RetrieveAPIView):
-
+    """Полное описание одного актёра"""
     queryset = Actor.objects.all()
     serializer_class=ActorDetailSerializer
 
