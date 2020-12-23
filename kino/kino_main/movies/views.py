@@ -1,8 +1,6 @@
 from django.db import models
-from django.db.models.base import Model
-from django.views import generic
+from django_filters import filters
 from rest_framework import generics
-from rest_framework import serializers
 from rest_framework.response import Response
 from django.http import Http404
 from django.db.models import Avg
@@ -13,13 +11,15 @@ from .serializers import (MovieAllSerializer,
                         AllActorSerializer,
                         ActorDetailSerializer)
 from .models import Actor, Movie
-
-
+from django_filters.rest_framework import DjangoFilterBackend
+from .utils import MovieFilter,CharFilterInFilter
 
 class  MovieAllView(generics.ListAPIView):
 
     serializer_class= MovieAllSerializer
-
+    filter_backends =(DjangoFilterBackend,)
+    filter_class= MovieFilter
+    
     def get_queryset(self):
         
         if self.request.user.is_authenticated:
