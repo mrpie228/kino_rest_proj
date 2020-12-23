@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.base import Model
+from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import Http404
@@ -52,6 +53,7 @@ class CreateReviewView(APIView):
         return Response(status=201)
 
 class CreateRatingView(APIView):
+    
     def get_user(self, request):
         user= request.user
         if user =="AnonymousUser":
@@ -59,13 +61,12 @@ class CreateRatingView(APIView):
         return user
 
     def post(self, request):
+
         serializer = CreateRatingSerializer(data=request.data)
+
         if serializer.is_valid():
-            try:
-                serializer.save(user=self.get_user(request))
-                return Response(status=201)
-            except:
-                serializer.update()
-                return Response(status=201)
+            serializer.save(user=self.get_user(request))
+            return Response(status=201)
         else:
             return Response(status=400)
+            #{"star":4,"movie":2}

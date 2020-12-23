@@ -121,7 +121,7 @@ class RatingStar(models.Model):
 class Rating(models.Model):
     """Рейтинг"""
     
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name="Пользователь",related_name='user')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="Пользователь",related_name='user')
     star = models.ForeignKey(RatingStar, on_delete=models.CASCADE, verbose_name="Звезда",related_name="star")
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name="Фильм",related_name="movie")
 
@@ -129,7 +129,7 @@ class Rating(models.Model):
         return f"{self.star} - {self.movie}"
 
     class Meta:
-        unique_together = ['user','movie']
+        #unique_together = ['user','movie','star']
         verbose_name = "Рейтинг"
         verbose_name_plural = "Рейтинги"
 

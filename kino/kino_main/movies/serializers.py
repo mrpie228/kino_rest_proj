@@ -57,14 +57,14 @@ class MovieOneDetailSerializer(serializers.ModelSerializer):
 class CreateRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ('movie','star')
+        fields = ('star','movie')
 
-    def new(self,validated_data):
+    def create(self,validated_data):
         
-        rating = Rating.objects.get_or_create(
-            
+        rating = Rating.objects.update_or_create(
+
         user= validated_data.get('user',None),
         movie= validated_data.get('movie',None),
-        defaults={'start': validated_data.get('star')}
+        defaults={'star': validated_data.get("star")},
         )
         return rating
