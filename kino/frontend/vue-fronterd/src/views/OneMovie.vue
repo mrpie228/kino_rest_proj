@@ -1,10 +1,15 @@
 <template>
 
 <section class="main-container" >
-     <div class="location" id="home">
-          <h1 id="home">Рекомендуем:</h1>
+  
+     <div class="location" id="one_film">
+          <h1 id="home">{{movie.title}}</h1>
+          <h4 id="desription">{{movie.description}}</h4>
+          <h4 id="year">{{movie.year}}</h4>
+          <h4 id="star">{{movie.star}}</h4>
+          <h4 id="star">{{movie.fees_in_world}}</h4>
           <div   class="box">
-            <a v-bind:key="movie.id" ><img :src="movie.poster" alt="" ><br></a>
+            <a ><img :src="movie.poster" alt="" ><br></a>
           </div>
       </div>
 
@@ -29,7 +34,8 @@ export default {
   props:['url'],
   data(){
     return{
-      movie:{}
+      movie:{},
+ 
     }
   },
   created() {
@@ -38,8 +44,8 @@ export default {
   methods: {
     async loadMovie(){
       this.movie = await fetch(
-        `http://localhost:8000/api/v2/movie/${this.url}`
-      ).then(response=>response.json())
+        `http://127.0.0.1:8000/api/v2/movie/${this.url}/`
+      ).then(response=>response.json()).then(console.log(this.movie))
     }
   }
 }
