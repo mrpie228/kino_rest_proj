@@ -10,7 +10,7 @@ class MovieAllSerializer(serializers.ModelSerializer):
     middle_rating = serializers.FloatField()
     class Meta:
          model = Movie
-         fields = ('title','tagline','category','url','middle_rating','that_user_rating')
+         fields = ('title',"poster",'tagline','category','url','middle_rating','that_user_rating')
 
 class AllActorSerializer(serializers.ModelSerializer):
     class Meta:
