@@ -1,8 +1,8 @@
 <template>
 <div>
     <form action="" method="">
-        <textarea v-model="text"></textarea>
-        <button>Send</button>
+        <textarea v-model="text" required></textarea>
+        <button type="button" @click="sendReview">Send</button>
     </form>
    <div class="review" v-for="review in reviews" :key="review.id">
        <div class="one_review">
@@ -32,6 +32,7 @@ export default {
             email:'',
             text:'',
             parent:null,
+            
 
         }
     },
@@ -40,10 +41,20 @@ export default {
             let data= {
                 text: this.text,
                 parent:this.parent,
+                movie:this.movie,
                 }
+                fetch (`http://127.0.0.1:8000/api/v2/review/`,
+                    {method:"POST",
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify(data)
+                    }).then(response=>{console.log(response.json())
+                    this.$emit('reLoad')
+                    })
             },
 
         }
-    },
+    
 }
 </script>
