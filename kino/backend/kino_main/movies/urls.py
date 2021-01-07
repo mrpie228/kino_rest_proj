@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from . import views
 
@@ -8,7 +8,7 @@ urlpatterns = [
 
     path("review/", views.CreateReviewView.as_view()),
 
-    path("rate/", views.CreateRatingView.as_view()),
+    re_path(r"^rate/$", views.CreateRatingView.as_view()),
 
     path("actors/", views.AllActorView.as_view()),
     path("actors/<pk>", views.ActorDetailView.as_view()),
