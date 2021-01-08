@@ -9,8 +9,9 @@ from .serializers import (MovieAllSerializer,
                         CreateRatingSerializer,
                         CreateReviewSerializer,
                         AllActorSerializer,
-                        ActorDetailSerializer)
-from .models import Actor, Movie
+                        ActorDetailSerializer,
+                        ShowCategorySerializer)
+from .models import Actor, Category, Genre, Movie
 from django_filters.rest_framework import DjangoFilterBackend
 from .utils import MovieFilter,CharFilterInFilter
 
@@ -38,6 +39,12 @@ class  MovieAllView(generics.ListAPIView):
                 
         serializer = MovieAllSerializer(movies, many = True)
         return movies
+
+
+class  ShowCategory(generics.ListAPIView):
+    """Все genres"""
+    queryset = Category.objects.all()
+    serializer_class=ShowCategorySerializer
 
 
 class AllActorView(generics.ListAPIView):

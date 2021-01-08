@@ -9,7 +9,7 @@ class Category(models.Model):
     name = models.CharField("Категория", max_length=150)
     description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
-
+    poster = models.ImageField("Обложка жанра",null=True, upload_to="category/")
     def __str__(self):
         return self.name
 
@@ -41,6 +41,7 @@ class Genre(models.Model):
     name = models.CharField("Имя", max_length=100)
     description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
+    #poster = models.ImageField("Обложка жанра", upload_to="genres/")
 
     def __str__(self):
         return self.name

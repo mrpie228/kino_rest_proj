@@ -2,7 +2,7 @@
   <div id="nav">
     <header>
       <div class="Logo">
-        <a id="logo" href="#home"><img src="" alt="Logo Image"></a>
+         <router-link to="/"><a id="logo" ><img src="./assets/logo.png"  alt="Logo Image"></a></router-link>
       </div>      
       <nav class="main-nav">                
         <router-link to="/"><a >Главная</a></router-link> 
@@ -11,8 +11,8 @@
  
       </nav>
       <nav class="sub-nav">
-        <router-link to="/search"><a >Поиск</a></router-link>  
-        <router-link to="/account"><a >Аккаунт</a></router-link>  
+        <router-link to="/search"><a ><img src="./assets/search.svg"></a></router-link>  
+        <router-link to="/account"><a ><img src="./assets/profile.svg"></a></router-link>  
       </nav>      
     </header>
     
@@ -23,7 +23,7 @@
 
 <style>
 :root {
-  --primary: #141414;
+  --primary: #13161F;
   --light: #F3F3F3;
   --dark: 	#686868;
 }
@@ -37,7 +37,7 @@ html, body {
   color: var(--light);
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 img {
@@ -53,7 +53,6 @@ h1 {
   padding: 0;
 }
 
-/* HEADER */
 header {
   padding: 20px 20px 0 20px;
   position: fixed;
@@ -78,12 +77,13 @@ header {
   padding-top: 0px;  
 }
 
-.netflixLogo img {  
-  height: 35px;     
+.Logo img {  
+  height: 35px; 
+
 }
 
 #logo {
-  color: #E50914;  
+  color: #c0c0c0;  
   margin: 0; 
   padding: 0; 
 }
@@ -92,6 +92,7 @@ header {
 .main-nav {
   grid-area: mn;
   padding: 0 30px 0 20px;
+
 }
 
 .main-nav a {
@@ -123,8 +124,8 @@ header {
 /* MAIN CONTIANER */
 .main-container {
   padding: 50px;
-}
 
+}
 .box {
   display: grid;
   grid-gap: 20px;
@@ -143,7 +144,7 @@ header {
 }
 
 .box img {
-  border-radius: 2px;
+  border-radius: 15px;
 }
 
 /* LINKS */
@@ -191,18 +192,23 @@ footer {
 @media(max-width: 1400px) {
 
   header {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 
-    "nt nt nt  .  .  . sb . . . "
-    "mn mn mn mn mn mn  mn mn mn mn";
-  }
+  padding: 20px 20px 0 20px;
+  position: fixed;
+  top: 0;
+  display: grid;  
+  grid-gap:5px;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-areas: 
+   "nt mn mn sb . . . "; 
+  background-color: var(--primary);
+  width: 100%;
+  margin-bottom: 0px;  
+}
 
   .box {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-template-columns: repeat(4, minmax(00px, 1fr));
   }
 
 }
@@ -210,13 +216,19 @@ footer {
 @media(max-width: 700px) {
 
   header {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 
-    "nt nt nt  .  .  . sb . . . "
-    "mn mn mn mn mn mn  mn mn mn mn";
-  }
+  padding: 20px 20px 0 20px;
+  position: fixed;
+  top: 0;
+  display: grid;  
+  grid-gap:5px;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-areas: 
+   "nt mn mn sb . . . "; 
+  background-color: var(--primary);
+  width: 100%;
+  margin-bottom: 0px;  
+}
+
 
   .box {
     display: grid;

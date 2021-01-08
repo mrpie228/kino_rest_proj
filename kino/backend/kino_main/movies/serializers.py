@@ -78,3 +78,9 @@ class CreateRatingSerializer(serializers.ModelSerializer):
         defaults={'star': validated_data.get("star")},
         )
         return rating
+
+
+class ShowCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields= ('id','name','poster','url')
