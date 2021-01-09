@@ -12,10 +12,3 @@ createApp(App).use(router).mount('#app')
 
 Vue.use(axios,VueAxios)
 
-new Vue({
-    el:'#app',
-    router,
-    components:{App},
-    template: '<App/>',
-    axios
-});
