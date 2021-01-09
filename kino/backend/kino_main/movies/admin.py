@@ -16,8 +16,14 @@ class MovieAdminForm(forms.ModelForm):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ("name", "url")
+
+    list_display = ("name", "url","get_image")
     list_display_links = ("name",)
+    
+    def get_image(self, obj):
+        return mark_safe(f'<img src={obj.poster.url} width="100" height="60"')
+
+    get_image.short_description = "Изображение"
 
 
 class ReviewInline(admin.TabularInline):
@@ -72,7 +78,7 @@ class MovieAdmin(admin.ModelAdmin):
     )
 
     def get_image(self, obj):
-        return mark_safe(f'<img src={obj.poster.url} width="100" height="110"')
+        return mark_safe(f'<img src={obj.poster.url} width="100" height="100"')
 
     def unpublish(self, request, queryset):
         """Снять с публикации"""
@@ -137,7 +143,7 @@ class MovieShotsAdmin(admin.ModelAdmin):
     readonly_fields = ("get_image",)
 
     def get_image(self, obj):
-        return mark_safe({obj.image.url})
+        return mark_safe(f'<img src={obj.image.url} width="150" height="200"')
 
     get_image.short_description = "Изображение"
 

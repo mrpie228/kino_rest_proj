@@ -6,7 +6,7 @@
       </div>      
       <nav class="main-nav">                
         <router-link to="/"><a >Главная</a></router-link> 
-        <router-link to="/category"><a href="">Категории</a></router-link>
+        <router-link to="/categories"><a href="">Категории</a></router-link>
 
  
       </nav>

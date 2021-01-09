@@ -84,3 +84,8 @@ class ShowCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields= ('id','name','poster','url')
+
+class ShowAllCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields= ('id','name','poster','url')

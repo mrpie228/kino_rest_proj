@@ -46,7 +46,8 @@ export default {
                 fetch (`http://127.0.0.1:8000/api/v2/review/`,
                     {method:"POST",
                     headers:{
-                        'Content-Type':'application/json'
+                        'Content-Type':'application/json',
+                        
                     },
                     body: JSON.stringify(data)
                     }).then(response=>{console.log(response.json())

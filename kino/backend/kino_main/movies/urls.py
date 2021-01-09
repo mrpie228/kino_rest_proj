@@ -12,5 +12,8 @@ urlpatterns = [
 
     path("actors/", views.AllActorView.as_view()),
     path("actors/<pk>", views.ActorDetailView.as_view()),
+
+
     path("category/", views.ShowCategory.as_view()),
+     path("categories/", views.ShowAllCategory.as_view()),
 ]
