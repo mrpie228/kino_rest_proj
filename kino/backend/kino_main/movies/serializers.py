@@ -89,3 +89,12 @@ class ShowAllCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields= ('id','name','poster','url')
+
+
+
+
+class ShowOneCategoryMoviesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = "__all__"

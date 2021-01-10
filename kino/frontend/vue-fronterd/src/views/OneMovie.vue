@@ -6,6 +6,8 @@
 
           <h1 id="home">{{movie.title}}</h1>
           
+
+          
           <h4 id="desription">{{movie.description}}</h4>
           <h4 id="year">{{movie.year}}</h4>
           <h4 id="star">{{movie.star}}</h4>
@@ -18,7 +20,7 @@
           </div>
       </div>
 <Review :reviews="movie.reviews" :movie="movie.url"/>
-<MoviePlayer :movie_url='movie.video_url' />
+
 </section>
 
 </template>
@@ -27,13 +29,14 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from '@/components/HelloWorld.vue'
-import MoviePlayer from '../components/MoviePlayer.vue';
+
+
 import Review from '../components/Review.vue';
 
 export default {
   name: 'OneMovie',
   props:['url'],
-  components:{Review,MoviePlayer},
+  components:{Review},
   data(){
     return{
       movie:{}, 

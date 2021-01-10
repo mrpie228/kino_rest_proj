@@ -11,7 +11,8 @@ from .serializers import (MovieAllSerializer,
                         AllActorSerializer,
                         ActorDetailSerializer,
                         ShowCategorySerializer,
-                        ShowAllCategorySerializer)
+                        ShowAllCategorySerializer,
+                        ShowOneCategoryMoviesSerializer)
 from .models import Actor, Category, Genre, Movie
 from django_filters.rest_framework import DjangoFilterBackend
 from .utils import MovieFilter,CharFilterInFilter
@@ -94,3 +95,19 @@ class CreateRatingView(generics.CreateAPIView):
     serializer_class = CreateRatingSerializer
     def perform_create(self, serializer):
         serializer.save(user=self.get_user(self.request))
+
+
+
+
+
+class ShowOneCategoryMovies(generics.ListAPIView):
+    
+    #cюда ебучее id
+
+    def get_queryset(self,id):
+            
+        movies =Movie.objects.get(category=id)
+        serializer = ShowOneCategoryMoviesSerializer(movies, many = True)
+
+        return movies
+

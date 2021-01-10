@@ -10,5 +10,6 @@ import VueAxios from 'vue-axios';
 
 createApp(App).use(router).mount('#app')
 
-Vue.use(axios,VueAxios)
+Vue.use(axios);
+Vue.use(VueAxios);
 

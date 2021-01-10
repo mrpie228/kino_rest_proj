@@ -15,5 +15,6 @@ urlpatterns = [
 
 
     path("category/", views.ShowCategory.as_view()),
-     path("categories/", views.ShowAllCategory.as_view()),
+    path("categories/", views.ShowAllCategory.as_view()),
+    path("categories/<id>/", views.ShowOneCategoryMovies.as_view()),
 ]
