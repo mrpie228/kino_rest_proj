@@ -6,11 +6,12 @@ from .models import *
 class MovieAllSerializer(serializers.ModelSerializer):
 
     category = serializers.SlugRelatedField(slug_field="name", read_only=True)
+    category_url = serializers.SlugRelatedField(slug_field="url", read_only=True)
     that_user_rating = serializers.FloatField()
     middle_rating = serializers.FloatField()
     class Meta:
          model = Movie
-         fields = ('title',"poster",'tagline','category','url','middle_rating','that_user_rating')
+         fields = ('title',"poster",'tagline','category','category_url','url','middle_rating','that_user_rating')
 
 class AllActorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -94,7 +95,7 @@ class ShowAllCategorySerializer(serializers.ModelSerializer):
 
 
 class ShowOneCategoryMoviesSerializer(serializers.ModelSerializer):
-
+   
     class Meta:
         model = Movie
         fields = "__all__"

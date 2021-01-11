@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import OneMovie from '../views/OneMovie.vue'
+import OneCategory from '../views/OneCategory.vue'
 import Categories from '../views/Categories.vue'
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     path:'/:url',
     name:'OneMovie',
     component:OneMovie,
+    props: true,
+  },
+  {
+    path:'/:category_url',
+    name:'OneCategory',
+    component: OneCategory,
     props: true,
   },
   {

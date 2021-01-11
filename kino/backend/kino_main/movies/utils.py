@@ -1,7 +1,7 @@
 
 from django.db import models
 from django_filters import rest_framework as filters
-from .models import Movie
+from .models import Category, Movie
 
 
 class CharFilterInFilter(filters.BaseInFilter,filters.CharFilter):
@@ -10,7 +10,8 @@ class MovieFilter(filters.FilterSet):
     genres= CharFilterInFilter(field_name='genres__name',lookup_expr='in')
     year= filters.RangeFilter()
     movie__star=CharFilterInFilter(field_name='movie__star',lookup_expr='in')
+    category= CharFilterInFilter(field_name='category__name',lookup_expr='in')
 
     class Meta:
         model=Movie
-        fields=['genres','year','movie__star']
+        fields=['genres','year','movie__star','category']

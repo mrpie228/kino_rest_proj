@@ -102,12 +102,12 @@ class CreateRatingView(generics.CreateAPIView):
 
 class ShowOneCategoryMovies(generics.ListAPIView):
     
-    #cюда ебучее id
+    serializer_class= ShowOneCategoryMoviesSerializer
 
-    def get_queryset(self,id):
-            
-        movies =Movie.objects.get(category=id)
+
+    def get_queryset(self):
+   
+        movies =Movie.objects.filter(draft=False, 
+)
         serializer = ShowOneCategoryMoviesSerializer(movies, many = True)
-
         return movies
-

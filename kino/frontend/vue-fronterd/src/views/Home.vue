@@ -4,11 +4,11 @@
       <div class="location" id="home">
           <h1 id="home">Рекомендуем:</h1>
           <div   class="box rec_movies">
-            <a v-for="movie in movies" v-bind:key="movie.id" ><img :src="movie.poster" alt="" @click="goTo(movie.url)" ><br></a>
+            <a v-for="movie in movies" v-bind:key="movie.id" ><img :src="movie.poster" alt="" @click="goToMovie(movie.url)" ><br></a>
           </div>
           <h1 id="tvShows">Категории:</h1>
       <div class="box category">
-        <a v-for="category in categories" v-bind:key="category.id" ><img :src="category.poster" alt="" ></a>
+        <a v-for="category in categories" v-bind:key="category.id" ><img :src="category.poster" alt="" @click="goToCategory(category.url)"></a>
        
       </div>
       </div>
@@ -43,12 +43,15 @@ export default {
     },
     async loadCategoty(){
       this.categories = await fetch(
-        `http://127.0.0.1:8000/api/v2/category/`
+        `http://127.0.0.1:8000/api/v2/categories/`
       ).then(response=>response.json())
     },
  
-    goTo(url){
+    goToMovie(url){
       this.$router.push({name:"OneMovie", params: {url:url} })
+    },
+    goToCategory(url){
+      this.$router.push({name:"OneCategory", params: {category_url:url} })
     }
    },
   }

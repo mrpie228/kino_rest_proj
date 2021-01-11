@@ -53,8 +53,6 @@ export default {
       this.movie = await fetch(
         `http://127.0.0.1:8000/api/v2/movie/${this.url}/`
       ).then(response=>response.json())
-
-      
     },
   }
 }
