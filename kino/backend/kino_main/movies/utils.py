@@ -10,7 +10,7 @@ class MovieFilter(filters.FilterSet):
     genres= CharFilterInFilter(field_name='genres__name',lookup_expr='in')
     year= filters.RangeFilter()
     movie__star=CharFilterInFilter(field_name='movie__star',lookup_expr='in')
-    category= CharFilterInFilter(field_name='category__name',lookup_expr='in')
+    category= CharFilterInFilter(field_name='category__url',lookup_expr='in')
 
     class Meta:
         model=Movie

@@ -12,6 +12,7 @@
 <script>
 export default {
   name: 'OneCategory',
+  props:['name'],
   component:{},
 
     data(){
@@ -26,7 +27,7 @@ export default {
     methods: {
       async loadCategorie(){
         this.categories = await fetch(
-          `http://127.0.0.1:8000/api/v2/movie/?&category=${this.category_url}/`
+          `http://127.0.0.1:8000/api/v2/movie/?&category=${this.name}`
         ).then(response=>response.json())
       },
   

@@ -50,8 +50,8 @@ export default {
     goToMovie(url){
       this.$router.push({name:"OneMovie", params: {url:url} })
     },
-    goToCategory(url){
-      this.$router.push({name:"OneCategory", params: {category_url:url} })
+    goToCategory(name){
+      this.$router.push({name:"OneCategory", params: {name:name} })
     }
    },
   }

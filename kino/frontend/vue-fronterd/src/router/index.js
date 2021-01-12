@@ -24,7 +24,7 @@ const routes = [
     props: true,
   },
   {
-    path:'/:category_url',
+    path:'/&category=:name',
     name:'OneCategory',
     component: OneCategory,
     props: true,
