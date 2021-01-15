@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.conf import settings
 
+
+
 class Category(models.Model):
     """Модель категорий"""
     name = models.CharField("Категория", max_length=150)
@@ -136,7 +138,6 @@ class Rating(models.Model):
 
 
 class Review(models.Model):
-
     email = models.EmailField()
     name = models.CharField("Имя", max_length=100)
     text = models.TextField("Сообщение", max_length=5000)
@@ -149,3 +150,20 @@ class Review(models.Model):
     class Meta:
         verbose_name = "Отзыв"
         verbose_name_plural = "Отзывы"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Пользователь")
+    photo = models.ImageField("Изображение", upload_to="profiles/photos")
+    rating = models.ManyToManyField(Rating,verbose_name="Оценки",related_name='rating')
+    wath_later = models.ManyToManyField(Movie,verbose_name="Фильмы в смотреть позже",related_name='watch_later')
+    liked = models.ManyToManyField(Movie,verbose_name="Понравивщиеся",related_name='liked')
+
+    class Meta:
+        verbose_name= "Профиль"
+        verbose_name= "Профили"
+
+#@receiver(post_save, sender=User)
+#def create_user_as_customer(sender, instance, created, **kwargs):
+#    if created:
+#        Customer.objects.create(user=instance,name=instance.username,email=instance.email)
