@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 
-from .models import Category, Genre, Movie, MovieShots, Actor, Rating, RatingStar, Review, Profile
+from .models import Category, Genre, Movie, MovieShots, Actor, Rating, RatingStar, Review
 
 
 class MovieAdminForm(forms.ModelForm):
@@ -151,14 +151,7 @@ class MovieShotsAdmin(admin.ModelAdmin):
 admin.site.register(RatingStar)
 
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "get_image")
-    list_display_links = ("user",)
-    
-    def get_image(self, obj):
-        return mark_safe(f'<img src={obj.photo.url} width="100" height="100"')
-    get_image.short_description = "Ава"
+
 
 
 admin.site.site_title = "Kino"
