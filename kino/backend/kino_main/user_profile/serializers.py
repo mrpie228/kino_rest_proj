@@ -5,6 +5,12 @@ from rest_framework import serializers
 from .models import *
 
 
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ("id","username")
+
 class WatchLaterSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -19,7 +25,7 @@ class LikedSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    user = serializers.SlugRelatedField(slug_field="username", read_only=True)
+    user = UserSerializer(read_only=True)
     watch_later = WatchLaterSerializer(read_only=True, many=True)
     liked = LikedSerializer(read_only=True, many=True)
     

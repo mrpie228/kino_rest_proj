@@ -5,20 +5,20 @@
          <router-link to="/"><a id="logo" ><img src="./assets/logo.png"  alt="Logo Image"></a></router-link>
       </div>      
       <nav class="main-nav">                
-        <router-link :to="'/'"><a >Главная</a></router-link> 
-        <router-link :to="'categories'"><a href="">Категории</a></router-link>
+        <router-link to="/"><a >Главная</a></router-link> 
+        <router-link to="/categories"><a href="">Категории</a></router-link>
 
  
       </nav>
       <nav class="sub-nav">
         <router-link to="/search"><a ><img src="./assets/search.svg"></a></router-link>  
-        <router-link to="/profiles/profile/1"><a ><img src="./assets/profile.svg"></a></router-link>  
+        <router-link to="/profiles/profile"><a ><img src="./assets/profile.svg"></a></router-link>  
       </nav>      
     </header>
     
-    
+      <router-view/>
   </div>
-  <router-view/>
+
 </template>
 
 <style>
