@@ -5,8 +5,8 @@
          <router-link to="/"><a id="logo" ><img src="./assets/logo.png"  alt="Logo Image"></a></router-link>
       </div>      
       <nav class="main-nav">                
-        <router-link to="/"><a >Главная</a></router-link> 
-        <router-link to="/categories"><a href="">Категории</a></router-link>
+        <router-link :to="'/'"><a >Главная</a></router-link> 
+        <router-link :to="'categories'"><a href="">Категории</a></router-link>
 
  
       </nav>

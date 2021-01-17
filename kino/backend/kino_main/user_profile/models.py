@@ -2,7 +2,7 @@ from django.db import models
 from movies.models import User,Rating,Movie 
 from django.db.models.signals import post_save
 
-# Create your models here.
+
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="Пользователь")
     photo = models.ImageField("Изображение", upload_to="profiles/photos", null=True,default="profiles/photos/no-image-user.png")
