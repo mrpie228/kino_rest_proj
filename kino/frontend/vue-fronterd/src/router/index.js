@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import OneMovie from '../views/OneMovie.vue'
 import OneCategory from '../views/OneCategory.vue'
 import Categories from '../views/Categories.vue'
+import Profile from '../views/Profile.vue'
 const routes = [
   {
     path: '/',
@@ -33,6 +34,12 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: Categories,
+    props:true
+  },
+  {
+    path: '/profiles/profile/:id',
+    name: 'Profile',
+    component: Profile,
     props:true
   },
 

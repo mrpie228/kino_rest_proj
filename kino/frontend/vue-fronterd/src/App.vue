@@ -12,7 +12,7 @@
       </nav>
       <nav class="sub-nav">
         <router-link to="/search"><a ><img src="./assets/search.svg"></a></router-link>  
-        <router-link to="/account"><a ><img src="./assets/profile.svg"></a></router-link>  
+        <router-link to="/profiles/profile/1"><a ><img src="./assets/profile.svg"></a></router-link>  
       </nav>      
     </header>
     
