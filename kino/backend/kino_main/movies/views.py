@@ -25,7 +25,6 @@ class  MovieAllView(generics.ListAPIView):
     filter_backends =(DjangoFilterBackend,)
     filter_class= MovieFilter
     
-
     #доп инфа по фильму
     def get_queryset(self):
         
@@ -44,12 +43,12 @@ class  MovieAllView(generics.ListAPIView):
 
 
 class  ShowCategory(generics.ListAPIView):
-    """Все genres"""
+    """Все категории на гл. странице"""
     queryset = Category.objects.all()[:5]
     serializer_class=ShowCategorySerializer
 
 class  ShowAllCategory(generics.ListAPIView):
-    """Все genres"""
+    """Все категории"""
     queryset = Category.objects.all()
     serializer_class=ShowAllCategorySerializer
 
@@ -101,7 +100,7 @@ class CreateRatingView(generics.CreateAPIView):
 
 
 class ShowOneCategoryMovies(generics.ListAPIView):
-    
+    """Вывод всех фильмов одной категории"""
     serializer_class= ShowOneCategoryMoviesSerializer
 
 
