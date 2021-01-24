@@ -15,8 +15,7 @@ class MovieAdminForm(forms.ModelForm):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-
-
+    """Категории"""
     list_display = ("name", "url","get_image")
     list_display_links = ("name",)
     
@@ -27,12 +26,14 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ReviewInline(admin.TabularInline):
+    """Отзывы"""
     model = Review
     extra = 1
     readonly_fields = ("name", "email")
 
 
 class MovieShotsInline(admin.TabularInline):
+    """Скрины фильмов"""
     model = MovieShots
     extra = 1
     readonly_fields = ("get_image",)
@@ -45,6 +46,7 @@ class MovieShotsInline(admin.TabularInline):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
+    """Фильм"""
     list_display = ("title", "category", "url", "draft")
     list_filter = ("category", "year")
     search_fields = ("title", "category__name")
@@ -153,7 +155,7 @@ admin.site.register(RatingStar)
 
 
 
-
+#naming
 admin.site.site_title = "Kino"
 admin.site.site_header = "Django Kino"
 

@@ -21,7 +21,7 @@ class Category(models.Model):
 
 
 class Actor(models.Model):
-
+    """Модель актёров"""
     name = models.CharField("Имя", max_length=100)
     age = models.PositiveSmallIntegerField("Возраст", default=0)
     description = models.TextField("Описание")
@@ -39,7 +39,7 @@ class Actor(models.Model):
 
 
 class Genre(models.Model):
-
+    """Модель жанров"""
     name = models.CharField("Имя", max_length=100)
     description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
@@ -54,7 +54,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-
+    """Модель видео"""
     title = models.CharField("Название", max_length=100)
     tagline = models.CharField("Слоган", max_length=100, default='')
     description = models.TextField("Описание")
@@ -94,7 +94,7 @@ class Movie(models.Model):
 
 
 class MovieShots(models.Model):
-
+    """Модель скринов из фильма"""
     title = models.CharField("Заголовок", max_length=100)
     description = models.TextField("Описание")
     image = models.ImageField("Изображение", upload_to="movie_shots/")
@@ -138,6 +138,7 @@ class Rating(models.Model):
 
 
 class Review(models.Model):
+    """Модель отзыва"""
     email = models.EmailField()
     name = models.CharField("Имя", max_length=100)
     text = models.TextField("Сообщение", max_length=5000)
@@ -153,8 +154,3 @@ class Review(models.Model):
 
 
 
-
-#@receiver(post_save, sender=User)
-#def create_user_as_customer(sender, instance, created, **kwargs):
-#    if created:
-#        Customer.objects.create(user=instance,name=instance.username,email=instance.email)

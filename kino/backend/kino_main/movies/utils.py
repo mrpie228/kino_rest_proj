@@ -15,3 +15,4 @@ class MovieFilter(filters.FilterSet):
     class Meta:
         model=Movie
         fields=['genres','year','movie__star','category']
+#всё, что выше - фильтр для фильмов, обеспечивает поиск по имени, году, категории и рейтингу
