@@ -4,12 +4,12 @@ from . import views
 
 urlpatterns = [
     #movies
-    path("movie/", views.MovieAllView.as_view()),
+    re_path(r"^movie\/?$", views.MovieAllView.as_view()),
     path("movie/<name>/", views.MovieOneDetailView.as_view()),
 
     #movie rating
-    path("review/", views.CreateReviewView.as_view()),
-    re_path(r"^rate/$", views.CreateRatingView.as_view()),
+    re_path(r"^review\/?$", views.CreateReviewView.as_view()),
+    re_path(r"^rate\/?$", views.CreateRatingView.as_view()),
 
     #actors
     path("actors/", views.AllActorView.as_view()),

@@ -69,6 +69,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -101,7 +102,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kino_main.wsgi.application'
 
-
+APPEND_SLASH = False
+REMOVE_SLASH = True
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 

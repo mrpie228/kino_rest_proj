@@ -6,5 +6,4 @@ from .serializers import (UserProfileSerializer)
 
 class UserProfileView(generics.RetrieveAPIView):
     queryset = Profile.objects.all()
-
     serializer_class=UserProfileSerializer

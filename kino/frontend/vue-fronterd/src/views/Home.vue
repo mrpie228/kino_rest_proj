@@ -38,7 +38,7 @@ export default {
   methods: {
     async loadMovies(){
       this.movies = await fetch(
-        `http://127.0.0.1:8000/api/v2/movie/`
+        `http://127.0.0.1:8000/api/v2/movie`
       ).then(response=>response.json())
     },
     async loadCategoty(){
